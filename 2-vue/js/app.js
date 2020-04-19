@@ -12,16 +12,21 @@ new Vue({
             this.search();
         },
         onReset() {
-            this.query = ''
+            this.resetForm()
         },
         onKeyup() {
-            if(!this.query.length) this.onReset()
+            if(!this.query.length) this.resetForm()
         },
         search() {
             SearchModel.list().then(data => {
                 this.submitted = true
                 this.searchResult = data
             })
+        },
+        resetForm() {
+            this.query = ''
+            this.submitted = false
+            this.searchResult = []
         }
     }
 })
